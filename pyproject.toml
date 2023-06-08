@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "video-magnet"
+version = "0.1.0"
+description = "Video Magnet is a system used to download videos from a bunch of websites"
+authors = ["Khiem Doan"]
+readme = "README.md"
+packages = [{include = "video_magnet"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-telegram-bot = "^20.3"
+yt-dlp = "^2023.3.4"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^5.12.0"
+ruff = "^0.0.271"
+pytest = "^7.3.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
