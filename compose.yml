@@ -1,0 +1,7 @@
+services:
+  saver:
+    build: .
+    container_name: mega-saver
+    restart: unless-stopped
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
