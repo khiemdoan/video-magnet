@@ -13,6 +13,7 @@ python-telegram-bot = "^20.3"
 yt-dlp = "^2023.3.4"
 
 [tool.poetry.group.dev.dependencies]
+reloadium = "*"
 pytest = "*"
 pytest-asyncio = "*"
 

@@ -582,6 +582,31 @@ socks = ["httpx[socks]"]
 webhooks = ["tornado (>=6.2,<7.0)"]
 
 [[package]]
+name = "reloadium"
+version = "1.1.1"
+description = "Hot reloader aka edit and continue for Python"
+optional = false
+python-versions = ">=3.7.0,<4.0"
+files = [
+    {file = "reloadium-1.1.1-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:5b22bb3f77dbd552380be2c9bdd39d047c97b7e5859d43a268e715d17fa5ab05"},
+    {file = "reloadium-1.1.1-cp310-cp310-macosx_12_0_arm64.whl", hash = "sha256:971247a83551ab2cdb277a817104e0d091376b891a6e12fd24eaefaa31d78bb5"},
+    {file = "reloadium-1.1.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7c492e80da4186d937546cf77ff3c5ba0a870a98097fd6508e4ffd3b1d244753"},
+    {file = "reloadium-1.1.1-cp310-cp310-win_amd64.whl", hash = "sha256:e8f690a9023d7c1a9b9926073e2a7b4619ae8e791aa986666ea87dfc59eca20a"},
+    {file = "reloadium-1.1.1-cp311-cp311-macosx_11_0_universal2.whl", hash = "sha256:5a035f94d4d5281fe67cd32c59889ff40257da2193de07f1714305f5fc12aa03"},
+    {file = "reloadium-1.1.1-cp311-cp311-macosx_12_0_arm64.whl", hash = "sha256:50c0284c3b7c31f4dd60d13307a3cdd3de7581f1e930019094caedb0507f22c2"},
+    {file = "reloadium-1.1.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:36d825eaa2a3b57262324554ef9784990ea1b4e95b2979784e026e419af3e7e9"},
+    {file = "reloadium-1.1.1-cp311-cp311-win_amd64.whl", hash = "sha256:4c9da0f5ebd532e993fdba86ed721c4e30b1da64f4dc77628d03948bc5cd65c5"},
+    {file = "reloadium-1.1.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:ef711ee98a7b064bff7163122b230a8107aa23eacf951ead21719b8dcf91e82a"},
+    {file = "reloadium-1.1.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9a56454a99b54725cb43dae4833a2f1e12639d86ecfed9c3fea033c03e70ac19"},
+    {file = "reloadium-1.1.1-cp38-cp38-win_amd64.whl", hash = "sha256:75aba60be6f641bb900188ba456a8f6178281fbf73667485f1e4eeb1e5f9ae6a"},
+    {file = "reloadium-1.1.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:fb2c2920514758e964e9215f6def338a0ad90bb08d742374f5de1f09a9a1cb72"},
+    {file = "reloadium-1.1.1-cp39-cp39-macosx_12_0_arm64.whl", hash = "sha256:9cec9b056dd60a831ba2d786896659c8751142044ac7a62b4f3962dc87be6c20"},
+    {file = "reloadium-1.1.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:82bd273abab966048379ff962c7994bc2e0ec34222d71ca405bf6bc1cd9b09f2"},
+    {file = "reloadium-1.1.1-cp39-cp39-win_amd64.whl", hash = "sha256:6a6a9240ad48f8d75fefb6c1b9ecc6b53c1fc4f19f2b0735a85ccb49d2c92186"},
+    {file = "reloadium-1.1.1-py3-none-any.whl", hash = "sha256:02a7bc82a9bfb8aba2f0eb538ba819239648a5b1f936197975b7125c28866173"},
+]
+
+[[package]]
 name = "ruff"
 version = "0.0.272"
 description = "An extremely fast Python linter, written in Rust."
@@ -741,4 +766,4 @@ websockets = "*"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "8e3ef10faf2d2d40ed77449a66c660f8945ebde3e4d0f9cd6b22773e16b97e55"
+content-hash = "df4aa2858cb5e5f54457473869ef3de2a48022c7c83f847fa11c9bbf16b0959e"
