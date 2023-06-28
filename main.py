@@ -11,7 +11,7 @@ import httpx
 from telegram import Message, Update
 from telegram.ext import Application, ContextTypes, MessageHandler, filters
 from yt_dlp import YoutubeDL
-from yt_dlp.utils import UnsupportedError
+from yt_dlp.utils import DownloadError, UnsupportedError
 
 from decorators import ignore_exception_with_logger
 from settings import get_telegram_settings
@@ -26,8 +26,9 @@ ydl = YoutubeDL()
 async def fetch_video(message: Message, url: str) -> None:
     try:
         info = await asyncio.to_thread(ydl.extract_info, url, download=False)
-    except UnsupportedError:
+    except (UnsupportedError, DownloadError):
         print(f'Unsupported: {url}')
+        return
 
     duration = info['duration']
     caption = info['title'][:500]
@@ -54,6 +55,9 @@ async def process_message(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         urls = PATTERN.findall(update.message.text)
     except Exception:
         print(f'Cannot process this message: {update}')
+        return
+    if len(urls) == 0:
+        return
     tasks = [fetch_video(update.message, u) for u in urls]
     await asyncio.gather(*tasks)
 
