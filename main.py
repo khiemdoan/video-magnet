@@ -11,6 +11,7 @@ import httpx
 from telegram import Message, Update
 from telegram.ext import Application, ContextTypes, MessageHandler, filters
 from yt_dlp import YoutubeDL
+from yt_dlp.utils import UnsupportedError
 
 from decorators import ignore_exception_with_logger
 from settings import get_telegram_settings
@@ -22,8 +23,11 @@ settings = get_telegram_settings()
 ydl = YoutubeDL()
 
 @ignore_exception_with_logger(logger)
-async def fetch_video(in_message: Message, url: str) -> None:
-    info = await asyncio.to_thread(ydl.extract_info, url, download=False)
+async def fetch_video(message: Message, url: str) -> None:
+    try:
+        info = await asyncio.to_thread(ydl.extract_info, url, download=False)
+    except UnsupportedError:
+        print(f'Unsupported: {url}')
 
     duration = info['duration']
     caption = info['title'][:500]
@@ -39,19 +43,27 @@ async def fetch_video(in_message: Message, url: str) -> None:
         thumbnail = await client.get(thumbnail_url)
         video = await client.get(format['url'])
 
-    await in_message.reply_video(video=video.content, duration=duration, caption=caption, thumbnail=thumbnail.content)
+    await message.reply_video(video=video.content, duration=duration, caption=caption, thumbnail=thumbnail.content)
 
 
 PATTERN = re.compile(r'(https?://\S+)')
 
+@ignore_exception_with_logger(logger)
 async def process_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    urls = PATTERN.findall(update.message.text)
+    try:
+        urls = PATTERN.findall(update.message.text)
+    except Exception:
+        print(f'Cannot process this message: {update}')
     tasks = [fetch_video(update.message, u) for u in urls]
     await asyncio.gather(*tasks)
 
 
 def main() -> None:
-    app = Application.builder().token(settings.bot_token).build()
+    app = Application.builder() \
+        .token(settings.bot_token) \
+        .read_timeout(30) \
+        .write_timeout(60) \
+        .build()
 
     loop = asyncio.get_event_loop()
     loop.run_until_complete(app.bot.initialize())
