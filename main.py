@@ -51,6 +51,9 @@ PATTERN = re.compile(r'(https?://\S+)')
 
 @ignore_exception_with_logger(logger)
 async def process_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if update.message.from_user.is_bot:
+        print(f'Not accept message from another bot: {update}')
+        return
     try:
         urls = PATTERN.findall(update.message.text)
     except Exception:
@@ -75,7 +78,8 @@ def main() -> None:
     name = loop.run_until_complete(app.bot.get_my_name())
     print(f'{name} is ready!')
 
-    app.add_handler(MessageHandler(filters.TEXT, process_message, block=False))
+    url_filters = filters.TEXT & (filters.Entity("url") | filters.Entity("text_link"))
+    app.add_handler(MessageHandler(url_filters, process_message, block=False))
     app.run_polling(allowed_updates=Update.CHAT_MEMBER)
 
 
