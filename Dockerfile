@@ -21,7 +21,7 @@ RUN python -m venv /venv \
 
 FROM base AS final
 
-RUN groupadd appgroup && useradd -g appgroup appuser
+RUN groupadd appgroup && useradd -g appgroup -m appuser
 
 USER appuser
 
