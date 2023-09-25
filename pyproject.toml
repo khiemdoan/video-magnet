@@ -12,7 +12,7 @@ redbird = "0.7.1"
 pydantic = "2.0.2"
 pydantic-settings = "2.0.1"
 python-telegram-bot = "20.4"
-yt-dlp = "2023.7.6"
+yt-dlp = "2023.9.24"
 
 [tool.poetry.group.dev.dependencies]
 reloadium = "*"
